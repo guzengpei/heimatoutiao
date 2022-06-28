@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-nav-bar title="登陆" left-arrow>
+    <van-nav-bar title="登陆" left-arrow @click-left="$router.back()">
       <van-icon name="cross" slot="left" />
     </van-nav-bar>
     <van-form @submit="onSubmit" ref="form">
@@ -13,8 +13,9 @@
           { pattern: /^(?:(?:\+|00)86)?1\d{10}$/, message: '不符合手机的格式' },
         ]"
       >
-        <i class="toutiao toutiao-shouji" slot="left-icon"></i
-      ></van-field>
+        <!-- <i class="toutiao toutiao-shouji" slot="left-icon"></i> -->
+        <Myicon name="shouji" slot="left-icon"></Myicon>
+      </van-field>
       <van-field
         v-model.trim="code"
         type="password"
@@ -52,6 +53,7 @@
 
 <script>
 import { getSmsCode, login } from '@/api/user'
+import Myicon from '@/components/Myicon.vue'
 export default {
   created () { },
   data () {
@@ -65,10 +67,11 @@ export default {
   methods: {
     async onSubmit (values) {
       try {
-        // console.log(values)
+        console.log(values)
         const res = await login(values)
         // console.log(res)
         this.$store.commit('setUser', res.data.data)
+        this.$router.push({ name: 'my' })
       } catch (err) {
         console.log(err)
       }
@@ -94,7 +97,7 @@ export default {
   computed: {},
   watch: {},
   filters: {},
-  components: {}
+  components: { Myicon }
 }
 </script>
 
