@@ -74,7 +74,7 @@ export default {
       try {
         const res = await getUserInfo()
         this.userInfo = res.data.data
-        console.log('res', res)
+        // console.log('res', res)
         // console.log(this.userInfo)
       } catch (err) {
         console.log(err)

@@ -58,7 +58,7 @@ export default {
   created () { },
   data () {
     return {
-      mobile: '13911111111', // 手机号
+      mobile: '18867691997', // 手机号
       code: '246810', // 短信验证码
       time: 5 * 1000,
       isCountDownShow: false
@@ -67,7 +67,7 @@ export default {
   methods: {
     async onSubmit (values) {
       try {
-        console.log(values)
+        // console.log(values)
         const res = await login(values)
         // console.log(res)
         this.$store.commit('setUser', res.data.data)
