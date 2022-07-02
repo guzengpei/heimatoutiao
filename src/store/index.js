@@ -10,7 +10,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    searchHistoryList: []
   },
   getters: {
   },
@@ -18,6 +19,18 @@ export default new Vuex.Store({
     setUser (state, payload) {
       state.user = payload
       // console.log(state.user)
+    },
+    setSetSearchHistoryList (state, payload) {
+      let arr = state.searchHistoryList
+      arr.unshift(payload)
+      arr = [...new Set(arr)]
+      state.searchHistoryList = arr
+    },
+    delHistory (state, index) {
+      state.searchHistoryList.splice(index, 1)
+    },
+    delAllHistory (state) {
+      state.searchHistoryList = []
     }
   },
   actions: {
